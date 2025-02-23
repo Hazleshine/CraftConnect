@@ -1,0 +1,18 @@
+footer {
+    background: #2A5CAA;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .footer-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.2rem;
+  }

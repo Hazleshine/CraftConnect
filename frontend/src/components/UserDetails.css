@@ -1,0 +1,30 @@
+.chatbot-input {
+  display: flex;
+  align-items: center;
+  padding: 10px;  /* Increased padding for better spacing */
+  gap: 10px; /* Adds space between input and button */
+}
+
+.chatbot-input input {
+  flex-grow: 1; /* Makes the input field take available space */
+  min-height: 40px; /* Ensures the input is not too small */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.1em; /* Increases font size for better readability */
+}
+
+.chatbot-input button {
+  padding: 12px 20px; /* Increased padding for better button size */
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em; /* Adjusted font size */
+  white-space: nowrap; /* Prevents text from breaking */
+}
+
+.chatbot-input button:hover {
+  background-color: #0056b3;
+}

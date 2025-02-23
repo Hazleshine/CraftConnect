@@ -1,0 +1,9 @@
+.job-market-analytics {
+    padding: 1rem;
+  }
+  
+  .chart {
+    height: 200px;
+    background: #f0f0f0;
+    border-radius: 10px;
+  }
