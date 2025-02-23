@@ -7,13 +7,15 @@
   resize: both; /* Allow resizing both horizontally and vertically */
   overflow: auto; /* Add scrollbars if needed */
   margin: 0 auto;
-  border-radius: 10px;
+  border-radius: 20px; /* More curved edges */
   background-color: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+  border: 2px solid #6C63FF; /* Vibrant border color */
 }
 
 .chatbot-header {
-  background-color: #18578f;
+  /* background-color: #18578f; */
+  background: linear-gradient(135deg, #cf5d41, #6C63FF);
   padding: 10px;
   cursor: move; /* Change cursor to move */
   z-index: 10;

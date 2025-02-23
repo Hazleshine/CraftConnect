@@ -2,27 +2,35 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import axios from "axios";
 
 const ServiceDetail = () => {
   const { id } = useParams();
   const [service, setService] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch service details (mocking with static data for now)
-    const serviceData = {
-      id,
-      name: "Plumbing",
-      description: "Expert plumbing services for all types of repairs and installations.",
-      price: "$50 per hour",
-      provider: "John Doe",
-      contact: "johndoe@example.com",
+    const fetchServiceDetails = async () => {
+      try {
+        const response = await axios.get(`/api/service/${id}`);
+        setService(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
     };
-    setService(serviceData);
+
+    fetchServiceDetails();
   }, [id]);
 
-  if (!service) {
+  if (loading) {
     return <p className="text-center mt-10">Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-center mt-10">Error: {error}</p>;
   }
 
   return (
@@ -34,10 +42,9 @@ const ServiceDetail = () => {
         <p className="mt-2 font-bold">Price: {service.price}</p>
         <p className="mt-2">Provided by: {service.provider}</p>
         <p className="mt-1">Contact: {service.contact}</p>
-    </div>
+      </div>
       <Footer />
     </div>
-    
   );
 };
 

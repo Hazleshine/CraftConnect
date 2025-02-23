@@ -7,9 +7,9 @@ import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
 import ServiceDetails from "./pages/ServiceDetails";
 import ProtectedRoute from './components/ProtectedRoute';
-import UserDetails from "./components/UserDetails";
-import Reviews from "./components/Reviews";
-import Register from "./components/Register";
+import UserDetails from "./pages/UserDetails";
+import Reviews from "./pages/Reviews";
+import Register from "./pages/Register";
 
 function App() {
   return (
