@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LoginSignup from "./pages/LoginSignup";
 import Dashboard from "./pages/Dashboard";
-import CareerGuidance from "./components/CareerGuidance";
-import JobMarketAnalytics from "./components/JobMarketAnalytics";
-import EmotionalIntelligenceHub from "./components/EmotionalIntelligenceHub";
+import Services from "./pages/Services";
+import NotFound from "./pages/NotFound";
+import ServiceDetails from "./pages/ServiceDetails";
 import ProtectedRoute from './components/ProtectedRoute';
 import UserDetails from "./components/UserDetails";
 
@@ -16,10 +16,10 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginSignup />} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/career-guidance" element={<ProtectedRoute><CareerGuidance /></ProtectedRoute>} />
-          <Route path="/emotional-intelligence-hub" element={<ProtectedRoute><EmotionalIntelligenceHub /></ProtectedRoute>} />
-          <Route path="/job-market-analytics" element={<ProtectedRoute><JobMarketAnalytics /></ProtectedRoute>} />
           <Route path="/user-details" element={<ProtectedRoute><UserDetails /></ProtectedRoute>} />
+          <Route path="/services" element={<ProtectedRoute><Services /></ProtectedRoute>} />
+          <Route path="/service/:id" element={<ProtectedRoute><ServiceDetails /></ProtectedRoute>} /> {/* Add this line */}
+          <Route path="*" element={<NotFound />} /> {/* Add this line */}
         </Routes>
         
       </div>

@@ -30,7 +30,7 @@ const LoginSignup = () => {
     <div className="login-signup-container">
       <div className="background-illustration"></div>
       <div className="form-container">
-        <h1>CareerCraft AI</h1>
+        <h1>Craft Connect</h1>
         <form onSubmit={handleSubmit}>
           <input
             type="email"

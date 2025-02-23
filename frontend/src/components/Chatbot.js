@@ -25,7 +25,7 @@ const Chatbot = () => {
   return (
     <div className="chatbot-container shadow-lg rounded-lg bg-white p-4">
 
-      <div className="chatbot-header text-center text-white py-2"><h1>CraftTalkAI</h1></div>
+      <div className="chatbot-header text-center text-white py-2"><h1>🤖 CraftConnect</h1></div>
 
       <div className="chatbot-messages p-3">
         {conversation.map((msg, index) => (
