@@ -2,10 +2,10 @@ import React from "react";
 
 const ServiceList = () => {
   const services = [
-    { id: 1, name: "Plumbing", description: "Expert plumbing services for your home and office." },
-    { id: 2, name: "Electrician", description: "Professional electrical maintenance and installation." },
+    { id: 1, name: "Plumbing", description: "Expert plumbing services for your home and office." },  
+    { id: 2, name: "Electrician", description: "Professional electrical maintenance and installation."},
     { id: 3, name: "House Cleaning", description: "Reliable and efficient house cleaning services." },
-    { id: 4, name: "Babysitting", description: "Trusted babysitting services for your little ones." },
+    { id: 4, name: "Babysitting", description: "Trusted babysitting services for your little ones."},
   ];
 
   return (

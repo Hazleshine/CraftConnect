@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import ServiceDetails from "./pages/ServiceDetails";
 import ProtectedRoute from './components/ProtectedRoute';
 import UserDetails from "./components/UserDetails";
+import Reviews from "./components/Reviews";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -18,10 +20,11 @@ function App() {
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/user-details" element={<ProtectedRoute><UserDetails /></ProtectedRoute>} />
           <Route path="/services" element={<ProtectedRoute><Services /></ProtectedRoute>} />
-          <Route path="/service/:id" element={<ProtectedRoute><ServiceDetails /></ProtectedRoute>} /> {/* Add this line */}
-          <Route path="*" element={<NotFound />} /> {/* Add this line */}
+          <Route path="/service/:id" element={<ProtectedRoute><ServiceDetails /></ProtectedRoute>} />
+          <Route path="/reviews" element={<ProtectedRoute><Reviews /></ProtectedRoute>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-        
       </div>
     </Router>
   );

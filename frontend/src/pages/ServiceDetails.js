@@ -28,7 +28,6 @@ const ServiceDetail = () => {
   return (
     <div>
       <Header />
-      <ServiceDetailContent service={service} />
       <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
         <h2 className="text-3xl font-semibold text-center">{service.name}</h2>
         <p className="mt-4 text-gray-600">{service.description}</p>

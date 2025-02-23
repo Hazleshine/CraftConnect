@@ -12,9 +12,7 @@ router.post("/chat", async (req, res) => {
 
     // Define contextual instructions for the AI
     const systemPrompt = `
-      You are an AI Career Counselor providing guidance on career paths, skills, and job market trends. 
-      Your purpose is to offer personalized career advice, assess skills, and ensure inclusivity in recommendations.
-      Stay focused on career-related discussions and avoid answering unrelated questions.
+      You are a virtual assistant for a smart community service access platform. Your purpose is to help users with questions related to community services such as local events, public transportation, utility services, and community resources. If a question is unrelated to these topics, politely inform the user that you can only assist with community service-related inquiries.
     `;
 
     const response = await model.generateContent([systemPrompt, message]); // Ensure context
