@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 app.use("/api/users", userRoutes);
 app.use("/api/chatbot", chatbotRoutes);
 app.use("/api/user-details", userDetailsRoutes);
-app.use("/api/services", serviceRouter); // Add this line
+app.use("/api/services", serviceRouter);
 
 // Start Server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
