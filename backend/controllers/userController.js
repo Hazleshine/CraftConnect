@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const { User } = require("../models/User");
 
 // Generate JWT Token
 const generateToken = (user) => {
@@ -16,9 +16,8 @@ const registerUser = async (req, res) => {
     if (user) {
       return res.status(400).json({ error: "User already exists" });
     }
-    // userid will be email till @ symbol
-    const userId = email.substring(0, email.indexOf('@'));
-    user = new User({ userId, email, password });
+
+    user = new User({ email, password });
     await user.save();
 
     const token = generateToken(user);

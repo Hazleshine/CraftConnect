@@ -4,12 +4,17 @@ from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 # Load environment variables from the .env file
 load_dotenv()
-
 app = Flask(__name__)
-
+# Enable CORS for the Flask app
+backend_url = os.getenv("FLASK_BACKEND_URL")
+frontend_url = os.getenv("REACT_FRONTEND_URL")
+CORS(app, resources={r"/*": {"origins": [frontend_url, backend_url]}})
+app = Flask(__name__)
+# Set the frontend URL from environment variable
 # Configure app settings using environment variables
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")  # Your secret key for JWT
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")            # MongoDB connection string
@@ -55,6 +60,7 @@ def login():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
+    print(email, password)
 
     # Validate input
     if not email or not password:
