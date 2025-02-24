@@ -1,0 +1,30 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup SSH Key and Connect to EC2
+      run: |
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > projectkeypair.pem
+        chmod 400 projectkeypair.pem
+
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i projectkeypair.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          cd /home/ubuntu/CraftConnect  
+          git pull origin main
+          npm install                   
+          npm run build                 
+          pm2 restart all               
+          exit
+        EOF
