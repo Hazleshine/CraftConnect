@@ -24,7 +24,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} << 'EOF'
           cd /path/to/your-repo
           git pull origin main
-          pip3 install -r requirements.txt  # For Python
-          node app.js                      # For Node.js
+          docker-compose down
+          docker-compose up -d
           EOF
-
