@@ -13,17 +13,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Start SSH Agent
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.AWS_SSH_PRIVATE_KEY }}
-
-      - name: Deploy to AWS EC2
+      - name: Set up SSH
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USER }}@${{ secrets.AWS_HOST }} << 'EOF'
-            cd ~/CraftConnect/backend || git clone https://github.com/Hazleshine/CraftConnect.git && cd CraftConnect/backend 
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AWS_SSH_PRIVATE_KEY }}" > ~/.ssh/aws_key.pem
+          chmod 600 ~/.ssh/aws_key.pem
+          ssh-keyscan -H 13.203.159.186 >> ~/.ssh/known_hosts
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/aws_key.pem
+
+      - name: Deploy to EC2
+        run: |
+          ssh -i ~/.ssh/aws_key.pem -o StrictHostKeyChecking=no ubuntu@13.203.159.186 << 'EOF'
+            cd ~/CraftConnect/backend
             git pull origin main
             npm install
-            pm2 stop all || true
-            pm2 start server.js --name backend
+            pm2 restart server
           EOF
+
+ 
