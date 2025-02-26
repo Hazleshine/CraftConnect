@@ -1,29 +1,30 @@
-name: Deploy to AWS EC2
+name: Deploy Backend to EC2
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: Set Up SSH Key
+        run: |
+          echo "${{ secrets.EC2_SSH_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
 
       - name: Deploy to EC2
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} << 'EOF'
-          cd /path/to/your-repo
-          git pull origin main
-          docker-compose down
-          docker-compose up -d
+          scp -i private_key.pem -r backend ubuntu@${{ secrets.EC2_HOST }}:~/backend
+          ssh -i private_key.pem ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+            cd ~/backend
+            npm install
+            pm2 stop all || true
+            pm2 start server.js --name craftconnect-backend
           EOF
+
