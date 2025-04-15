@@ -18,11 +18,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 43.204.220.189 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 13.201.23.45 >> ~/.ssh/known_hosts
 
       - name: Deploy to EC2
-        run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@43.204.220.189 "bash ~/deploy.sh"
+        run: ssh ubuntu@13.201.23.45 "bash ~/deploy.sh"
+
 
 
 
