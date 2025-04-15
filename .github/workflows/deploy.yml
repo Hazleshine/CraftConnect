@@ -1,4 +1,4 @@
-name: Deploy Backend to AWS EC2 
+name: Deploy Backend to AWS EC2
 
 on:
   push:
@@ -13,16 +13,21 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up SSH Key
+      - name: Set up SSH Key with Proper Formatting
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo -e "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 43.204.220.189 >> ~/.ssh/known_hosts
+
+      - name: Test SSH Connection
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@43.204.220.189 "echo 'SSH connected!'"
 
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@43.204.220.189 "bash ~/deploy.sh"
+
 
 
 
